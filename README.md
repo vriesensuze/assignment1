@@ -1,5 +1,12 @@
-# DIT044 Assignment 1
+- Create an inheritance hierarchy where Volvo240 and Saab95 are both included, which eliminates all code duplication and follows the Open-Closed Principle. This should not change the functionality of the classes, only their structure.
+-- Should you use implementation inheritance (subclassing) or specification inheritance (interfaces)? Why? Can both be used? What advantages and disadvantages do you see?
+--- Subclassing with an abstract class "Car", because Volvo240 and Saab95 had almost the same codes a superclass would let them share the same code, so that it is less repetitive. Both could be used, an interface for what a car can do and an abstract class for the shared code. A disadvantage is that the subclasses depend on "Car", if I change "Car" it could break the code.  
+-- How does your solution follow the Open-Closed Principle better than the original code? Think of an extension that is now possible without modifying existing code. Can you think of any extensions that would require changing existing code?
+--- If I want to add a new car, I can just create a new class that extends "Car" and write its own speedFactor(). This way I don't have to change any of the old classes. If I wanted to add a new abstract method, like which petrol the car uses, I would have to change "Car" and all the subclasses too.
+- In the original files, all methods and variables are declared public, which exposes everything to other parts of the system. Think about which methods and variables users would need to see or know about, and change visibility of other methods and variables accordingly.
+-- Which visibility should you use for the different methods and variables the class contains? What interface should you expose?
+--- I made all the variables private so other classes can't change them directly. But by using the get-methods they can still be read. The methods a user needs are public. speedFactor is protected because only the subclasses need it. incrementSpeed and decrementSpeed are private because only "Car" uses them.
 
-Assignment 1 in the course DIT044 Object-oriented Programming
+Every test checks something that you could expect from the car before you look at the code. That is important because if you write tests by running the code and copying the outputs. A bug will be the "expected" result, this way the test will always pass although it is protecting a bug.
 
-See Canvas for instructions.
+Are they falsifiable? Yes. You can check this by breaking the code on purpose. 
